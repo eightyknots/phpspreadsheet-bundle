@@ -1,0 +1,22 @@
+{
+    "name": "yectep/phpspreadsheet-bundle",
+    "description": "A Symfony bundle to integrate with PHPOffice's PhpSpreadsheet library",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chester Li",
+            "email": "yectep@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "phpoffice/phpspreadsheet": "~1.1",
+        "symfony/framework-bundle": "~2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yectep\\PhpSpreadsheetBundle\\": "src"
+        }
+    }
+}
