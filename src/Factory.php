@@ -4,6 +4,7 @@ namespace Yectep\PhpSpreadsheetBundle;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Factory class for PhpSpreadsheet objects.
@@ -54,6 +55,29 @@ class Factory {
         }
 
         return new $readerClass();
+    }
+
+
+    /**
+     * Return a StreamedResponse containing the file
+     * 
+     * @param Spreadsheet $spreadsheet
+     * @param unknown $type
+     * @param number $status
+     * @param array $headers
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function createStreamedResponse(Spreadsheet $spreadsheet, $type, $status = 200, $headers = array())
+    {
+        $writer = IOFactory::createWriter($spreadsheet, $type);
+        
+        return new StreamedResponse(
+            function () use ($writer) {
+                $writer->save('php://output');
+            },
+            $status,
+            $headers
+            );
     }
 
 }
