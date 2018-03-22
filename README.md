@@ -93,4 +93,3 @@ Remaining todos include:
 * Tests and test coverage
 * TravisCI
 * Improved documentation
-* `createStreamedResponse()`
