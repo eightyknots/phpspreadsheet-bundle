@@ -4,6 +4,7 @@ namespace Yectep\PhpSpreadsheetBundle;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\BaseWriter;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
@@ -73,14 +74,7 @@ class Factory {
         $writer = IOFactory::createWriter($spreadsheet, $type);
 
         if (!empty($writerOptions)) {
-            foreach ($writerOptions as $method => $arguments) {
-                if (method_exists($writer, $method)) {
-                    if (!is_array($arguments)) {
-                        $arguments = array($arguments);
-                    }
-                    call_user_func_array(array($writer, $method), $arguments);
-                }
-            }
+            $this->applyOptionsToWriter($writer, $writerOptions);
         }
 
         return new StreamedResponse(
@@ -92,4 +86,19 @@ class Factory {
         );
     }
 
+    /**
+     * @param BaseWriter $writer
+     * @param array      $options
+     */
+    private function applyOptionsToWriter(BaseWriter $writer, $options = array())
+    {
+        foreach ($options as $method => $arguments) {
+            if (method_exists($writer, $method)) {
+                if (!is_array($arguments)) {
+                    $arguments = array($arguments);
+                }
+                call_user_func_array(array($writer, $method), $arguments);
+            }
+        }
+    }
 }
