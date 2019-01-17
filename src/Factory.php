@@ -63,7 +63,7 @@ class Factory {
      * Return a StreamedResponse containing the file
      * 
      * @param Spreadsheet $spreadsheet
-     * @param unknown $type
+     * @param string $type
      * @param number $status
      * @param array $headers
      * @param array $writerOptions
