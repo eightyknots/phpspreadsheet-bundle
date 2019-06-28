@@ -101,17 +101,23 @@ If you are migrating from Symfony Serializer component + CSV encoder - you can u
 ```
 $spreadsheet = $this->get('phpoffice.spreadsheet')->createSpreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
+$sheet->setTitle($this->filterVars['wareCategory']->getTitle());
 $columnsMap = [];
-$lineIndex = 1;
+$lineIndex = 2;
 foreach ($data as $line) {
    foreach ($line as $columnName=>$columnValue) {
-       if (!$columnIndex = array_search($columnName, $columnsMap)) {
+       if (is_int($columnIndex = array_search($columnName, $columnsMap))) {
+           $columnIndex++;
+       } else {
            $columnsMap[] = $columnName;
            $columnIndex = count($columnsMap);
        }
        $sheet->getCellByColumnAndRow($columnIndex, $lineIndex)->setValue($columnValue);
    }
    $lineIndex++;
+}
+foreach ($columnsMap as $columnMapId=>$columnTitle) {
+   $sheet->getCellByColumnAndRow($columnMapId+1, 1)->setValue($columnTitle);
 }
 $writer = $this->get('phpoffice.spreadsheet')->createWriter($spreadsheet, 'Xlsx');
 ob_start();
