@@ -93,3 +93,37 @@ Remaining todos include:
 * Tests and test coverage
 * TravisCI
 * Improved documentation
+
+## Symfony serializer
+
+If you are migrating from Symfony Serializer component + CSV encoder - you can use code like
+
+```
+$spreadsheet = $this->get('phpoffice.spreadsheet')->createSpreadsheet();
+$sheet = $spreadsheet->getActiveSheet();
+$columnsMap = [];
+$lineIndex = 1;
+foreach ($data as $line) {
+   foreach ($line as $columnName=>$columnValue) {
+       if (!$columnIndex = array_search($columnName, $columnsMap)) {
+           $columnsMap[] = $columnName;
+           $columnIndex = count($columnsMap);
+       }
+       $sheet->getCellByColumnAndRow($columnIndex, $lineIndex)->setValue($columnValue);
+   }
+   $lineIndex++;
+}
+$writer = $this->get('phpoffice.spreadsheet')->createWriter($spreadsheet, 'Xlsx');
+ob_start();
+$writer->save('php://output');
+$excelOutput = ob_get_clean();
+
+return new Response(
+   $excelOutput,
+   200,
+   [
+       'content-type'        =>  'text/x-csv; charset=windows-1251',
+       'Content-Disposition' => 'attachment; filename="price.xlsx"'
+   ]
+);
+```
