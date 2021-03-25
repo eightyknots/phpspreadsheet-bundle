@@ -64,7 +64,7 @@ class Factory {
      * 
      * @param Spreadsheet $spreadsheet
      * @param string $type
-     * @param number $status
+     * @param int $status
      * @param array $headers
      * @param array $writerOptions
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
