@@ -5,6 +5,7 @@ namespace Yectep\PhpSpreadsheetBundle;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\BaseWriter;
+use PhpOffice\PhpSpreadsheet\Writer\IWriter;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
@@ -23,7 +24,7 @@ class Factory {
      * @return Spreadsheet
      * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
      */
-    public function createSpreadsheet($filename = null)
+    public function createSpreadsheet($filename = null): Spreadsheet
     {
         return (is_null($filename) ? new Spreadsheet() : IOFactory::load($filename));
     }
@@ -37,7 +38,7 @@ class Factory {
      * @return \PhpOffice\PhpSpreadsheet\Writer\IWriter
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function createWriter(Spreadsheet $spreadsheet, $type)
+    public function createWriter(Spreadsheet $spreadsheet, $type): IWriter
     {
         return IOFactory::createWriter($spreadsheet, $type);
     }
@@ -69,7 +70,7 @@ class Factory {
      * @param array $writerOptions
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function createStreamedResponse(Spreadsheet $spreadsheet, $type, $status = 200, $headers = array(), $writerOptions = array())
+    public function createStreamedResponse(Spreadsheet $spreadsheet, $type, $status = 200, $headers = array(), $writerOptions = array()): StreamedResponse
     {
         $writer = IOFactory::createWriter($spreadsheet, $type);
 

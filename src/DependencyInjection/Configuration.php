@@ -16,7 +16,7 @@ class Configuration implements ConfigurationInterface
     /**
      * @inheritdoc
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         if (! method_exists('Symfony\Component\Config\Definition\Builder\TreeBuilder', 'getRootNode')) {
             // This is the pre 4.2 way
