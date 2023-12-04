@@ -1,6 +1,6 @@
 # PhpSpreadsheetBundle
 
-This bundle integrates your Symfony 3/4/5 app with the PHPOffice PhpSpreadsheet
+This bundle integrates your Symfony 3/4/5/6 app with the PHPOffice PhpSpreadsheet
 productivity library.
 
 ## Requirements
