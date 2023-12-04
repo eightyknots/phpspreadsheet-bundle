@@ -100,7 +100,7 @@ Remaining todos include:
 
 If you are migrating from Symfony Serializer component + CSV encoder - you can use code like
 
-```
+```php
 $spreadsheet = $this->get('phpoffice.spreadsheet')->createSpreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
 $sheet->setTitle($this->filterVars['wareCategory']->getTitle());
