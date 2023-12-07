@@ -1,6 +1,6 @@
 # PhpSpreadsheetBundle
 
-This bundle integrates your Symfony 3/4/5/6 app with the PHPOffice PhpSpreadsheet
+This bundle integrates your Symfony 4/5/6/7 app with the PHPOffice PhpSpreadsheet
 productivity library.
 
 ## Requirements
@@ -17,7 +17,7 @@ Note: Tags older than v1.0.0 (e.g. v0.2.0) are no longer supported due to deprec
 Use composer to require the latest stable version.
 
 ````bash
-$ composer require yectep/phpspreadsheet-bundle
+composer require yectep/phpspreadsheet-bundle
 ````
 
 If you're not using Flex, enable the bundle in your `AppKernel.php` or `bundles.php` file.
