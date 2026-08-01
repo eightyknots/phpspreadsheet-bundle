@@ -12,7 +12,7 @@
     "require": {
         "php": ">=7.2",
         "phpoffice/phpspreadsheet": "~1.16",
-        "symfony/framework-bundle": "^4.0|^5.0|^6.0|^7.0"
+        "symfony/framework-bundle": "^4.0|^5.0|^6.0|^7.0|^8.0"
     },
     "autoload": {
         "psr-4": {
